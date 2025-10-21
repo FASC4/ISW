@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="login-container">
-    <form action="/login" method="POST" class="loginForm">
+    <form action="/login" method="POST" class="loginForm" onsubmit="return validarLogin()">
       <h2>Iniciar Sesión</h2>
 
       <div class="form-row">
@@ -23,6 +23,21 @@
 
       <button type="submit" class="submit-btn">Ingresar</button>
     </form>
+
+     <script>
+    function validarLogin() {
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+
+        if (user === 'admin' && pass === '1234') {
+            window.location.href = "dashboard.html";
+            return false;
+        } else {
+            alert('Usuario o contraseña incorrectos');
+            return false;
+        }
+    }
+    </script>
   </div>
 </body>
 </html>
