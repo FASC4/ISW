@@ -1,81 +1,175 @@
-/* ===== Reset y base ===== */
-* { box-sizing: border-box; }
+/* Reset básico */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: #1a1a1a;
-  background: #f6f7f9;
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f6f7fb; color:#111827; }
+
+/* Layout principal */
+.layout {
+  display: flex;
+  min-height: 100vh;
 }
 
-/* ===== Barra lateral (aplica al primer div del body) ===== */
-body > div {
-  position: fixed;
-  inset: 0 auto 0 0;           /* top:0; bottom:0; left:0 */
+/* Sidebar izquierda */
+.sidebar {
   width: 260px;
-  padding: 20px 16px;
-  background: #ffe6a7;         /* azul gris muy oscuro */
-  border-right: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
+  background: #fff3b0;          /* azul muy oscuro */
+  color: #9b9da0;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
-/* Separación del contenido (si luego agregas contenido principal) */
-body { 
-  margin-left: 260px; 
-}
-
-/* ===== Enlaces ===== */
-body > div a {
+.sidebar a {
   display: block;
+  text-decoration: none;
+  color: #9b9da0;
   padding: 12px 14px;
   border-radius: 10px;
-  text-decoration: none;
-  color: #a4a5a8;
-  font-weight: 600;
-  letter-spacing: .2px;
-  background: transparent;
-  transition: background-color .2s ease, color .2s ease, transform .02s ease;
+  transition: background .2s, transform .05s;
+  font-weight: 500;
+}
+.sidebar a:hover { background: #FFEA75; }
+.sidebar a:active { transform: scale(0.99); }
+
+/* Panel derecho (segundo div) */
+.content {
+  flex: 1;
+  padding: 28px;
+  background: #eef1f4;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Caja gris */
+.content {
+  /* La propia sección será la caja gris */
+  background: #e5e7eb;          /* gris claro */
+  border: 1px solid #d1d5db;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  margin: 20px;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* Título */
+.content h1 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+/* Formulario con selects */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 16px 20px;
+}
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+label { font-size: 14px; color: #374151; }
+
+select {
+  appearance: none;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
   outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.2);
 }
 
-/* Hover / focus */
-body > div a:hover {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar { width: 220px; }
+  .filters { grid-template-columns: 1fr; }
 }
-body > div a:focus-visible {
-  outline: 2px solid #60a5fa;           /* azul claro accesible */
-  outline-offset: 2px;
-}
-
-/* Pressed feedback */
-body > div a:active { transform: translateY(1px); }
-
-/* ===== Encabezado opcional (si quisieras estilizar el primero) ===== */
-/* body > div a:first-child { background: rgba(255,255,255,0.1); } */
-
-/* ===== Responsive: barra se convierte en superior en pantallas pequeñas ===== */
-@media (max-width: 680px) {
-  body > div {
-    position: fixed;
+@media (max-width: 640px) {
+  .layout { flex-direction: column; }
+  .sidebar {
     width: 100%;
-    height: 64px;
-    padding: 10px;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    overflow-x: auto;
-    white-space: nowrap;
+    height: auto;
+    position: relative;
+    border-bottom: 1px solid #1f2937;
   }
-
-  body { margin-left: 0; padding-top: 64px; }
-
-  body > div a {
-    border-radius: 8px;
-    padding: 10px 12px;
-    flex: 0 0 auto;    /* que no se estiren, scroll horizontal si hace falta */
-  }
+  .content { margin: 12px; }
 }
+
+/* ====== Sidebar: grupos desplegables ====== */
+.menu-group {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.menu-group + a,
+.menu-group + .menu-group,
+.sidebar a + .menu-group {
+  margin-top: 6px;
+}
+
+/* Título del grupo (summary) con estilo de item de menú */
+.menu-group > summary {
+  list-style: none;           /* oculta marcador por defecto */
+  cursor: pointer;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #9b9da0;
+  font-weight: 600;
+  position: relative;
+  transition: background .2s, transform .05s;
+}
+
+/* Hover/active como los <a> */
+.menu-group > summary:hover { background: #FFEA75; }
+.menu-group > summary:active { transform: scale(0.99); }
+
+/* Flecha indicador */
+.menu-group > summary::after {
+  content: '▸';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform .2s ease;
+  opacity: .8;
+}
+
+/* Rotar flecha cuando está abierto */
+.menu-group[open] > summary::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Contenedor de subopciones */
+.submenu {
+  display: grid;
+  padding: 6px 6px 8px 6px;   /* pequeño padding interno */
+  gap: 6px;
+}
+
+/* Links internos del desplegable */
+.submenu a {
+  display: block;
+  text-decoration: none;
+  color: #9b9da0;
+  background: transparent;
+  padding: 10px 12px 10px 28px;   /* sangría para jerarquía */
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background .2s, transform .05s;
+}
+
+.submenu a:hover { background: #FFEA75; }
+.submenu a:active { transform: scale(0.99); }
+
+/* Quitar triángulo default de summary en Safari/Firefox */
+.menu-group > summary::-webkit-details-marker { display: none; }
