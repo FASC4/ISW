@@ -1,19 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador MSV</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cotizador MSV</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div>
-        <a href="">Generar Cotizacion</a>
-        <a href="">Gestionar Cotizacion</a>
-        <a href="">Ver Historial de Cotizaciones</a>
-        <a href="">Gestionar clientes</a>
-        <a href="">Gestionar instrumentos</a>
-        <a href="">Cerrar Sesion</a>
-    </div>
+  <div class="layout">
+    <!-- Barra lateral izquierda -->
+    <aside class="sidebar">
+  <!-- Grupo desplegable -->
+  <details class="menu-group">
+    <summary>Cotizaciones</summary>
+    <nav class="submenu">
+      <a href="#">Generar</a>
+      <a href="#">Gestionar</a>
+    </nav>
+  </details>
+
+  <!-- El resto puede seguir como links normales o también como grupos -->
+  <a href="#">Historial</a>
+
+  <details class="menu-group">
+    <summary>Clientes</summary>
+    <nav class="submenu">
+      <a href="#">Agregar</a>
+      <a href="#">Editar</a>
+      <a href="#">Listar</a>
+    </nav>
+  </details>
+
+  <details class="menu-group">
+    <summary>Instrumentos</summary>
+    <nav class="submenu">
+      <a href="#">Agregar</a>
+      <a href="#">Gestionar</a>
+    </nav>
+  </details>
+
+  <a href="#">Cerrar Sesión</a>
+</aside>
+
+
+    <!-- Panel derecho gris con selects -->
+    <main class="content">
+      <h1>Filtros</h1>
+      <form class="filters">
+        <div class="field">
+          <label for="cliente">Cliente</label>
+          <select id="cliente">
+            <option selected disabled>Selecciona un cliente</option>
+            <option>Cliente A</option>
+            <option>Cliente B</option>
+            <option>Cliente C</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="instrumento">Instrumento</label>
+          <select id="instrumento">
+            <option selected disabled>Selecciona un instrumento</option>
+            <option>Calibrador</option>
+            <option>Balanza</option>
+            <option>Termómetro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="estado">Estado</label>
+          <select id="estado">
+            <option selected disabled>Selecciona estado</option>
+            <option>Pendiente</option>
+            <option>En proceso</option>
+            <option>Finalizada</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="rango">Rango de fecha</label>
+          <select id="rango">
+            <option selected disabled>Selecciona un rango</option>
+            <option>Última semana</option>
+            <option>Último mes</option>
+            <option>Últimos 3 meses</option>
+          </select>
+        </div>
+      </form>
+    </main>
+  </div>
 </body>
 </html>
