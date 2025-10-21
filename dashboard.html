@@ -12,66 +12,53 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Topbar -->
-  <header class="topbar d-lg-none">
-    <button class="btn btn-outline-light ms-2 my-2" type="button"
-            data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-            aria-controls="sidebar" aria-label="Abrir menú">
-      ☰
-    </button>
-    <span class="topbar-title">Cotizador MSV</span>
-  </header>
-
   <div class="container-fluid layout">
     <div class="row g-0">
-      <!-- Sidebar Offcanvas: móvil = offcanvas, >= lg = fijo -->
-      <div class="offcanvas offcanvas-start offcanvas-lg sidebar p-0" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
-        <div class="offcanvas-header d-lg-none">
-          <h5 class="offcanvas-title" id="sidebarLabel">Menú</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      <!-- Sidebar -->
+      <aside class="col-12 col-sm-4 col-md-3 col-lg-2 sidebar">
+        <!-- Cotizaciones (colapsable) -->
+        <button class="btn btn-toggle mb-2" data-bs-toggle="collapse" data-bs-target="#cotizaciones" aria-expanded="true">
+          Cotizaciones
+        </button>
+        <div class="collapse show" id="cotizaciones">
+          <ul class="nav flex-column submenu mb-2">
+            <li class="nav-item"><a class="nav-link" href="#">Generar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Gestionar</a></li>
+          </ul>
         </div>
 
-        <div class="offcanvas-body p-3">
-          <!-- Cotizaciones (colapsable) -->
-          <button class="btn btn-toggle mb-2 w-100" data-bs-toggle="collapse" data-bs-target="#cotizaciones" aria-expanded="true">
-            Cotizaciones
-          </button>
-          <div class="collapse show" id="cotizaciones">
-            <ul class="nav flex-column submenu mb-2">
-              <li class="nav-item"><a class="nav-link" href="#">Generar</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Gestionar</a></li>
-            </ul>
-          </div>
+        <!-- Historial -->
+        <a class="nav-link mb-2" href="#">Historial</a>
 
-          <a class="nav-link mb-2" href="#">Historial</a>
-
-          <button class="btn btn-toggle mb-2 w-100" data-bs-toggle="collapse" data-bs-target="#clientes" aria-expanded="false">
-            Clientes
-          </button>
-          <div class="collapse" id="clientes">
-            <ul class="nav flex-column submenu mb-2">
-              <li class="nav-item"><a class="nav-link" href="#">Agregar</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Editar</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Listar</a></li>
-            </ul>
-          </div>
-
-          <button class="btn btn-toggle mb-2 w-100" data-bs-toggle="collapse" data-bs-target="#instrumentos" aria-expanded="false">
-            Instrumentos
-          </button>
-          <div class="collapse" id="instrumentos">
-            <ul class="nav flex-column submenu mb-2">
-              <li class="nav-item"><a class="nav-link" href="#">Agregar</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Gestionar</a></li>
-            </ul>
-          </div>
-
-          <a class="nav-link mt-2" href="#">Cerrar Sesión</a>
+        <!-- Clientes -->
+        <button class="btn btn-toggle mb-2" data-bs-toggle="collapse" data-bs-target="#clientes" aria-expanded="false">
+          Clientes
+        </button>
+        <div class="collapse" id="clientes">
+          <ul class="nav flex-column submenu mb-2">
+            <li class="nav-item"><a class="nav-link" href="#">Agregar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Editar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Listar</a></li>
+          </ul>
         </div>
-      </div>
+
+        <!-- Instrumentos -->
+        <button class="btn btn-toggle mb-2" data-bs-toggle="collapse" data-bs-target="#instrumentos" aria-expanded="false">
+          Instrumentos
+        </button>
+        <div class="collapse" id="instrumentos">
+          <ul class="nav flex-column submenu mb-2">
+            <li class="nav-item"><a class="nav-link" href="#">Agregar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Gestionar</a></li>
+          </ul>
+        </div>
+
+        <!-- Cerrar sesión -->
+        <a class="nav-link mt-2" href="#">Cerrar Sesión</a>
+      </aside>
 
       <!-- Panel derecho -->
-      <main class="col-12 col-lg content-wrap">
+      <main class="col-12 col-sm-8 col-md-9 col-lg-10 content-wrap">
         <div class="content">
           <h1 class="h5 mb-3">Filtros</h1>
 
@@ -124,7 +111,7 @@
   <!-- Bootstrap JS (incluye Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Acordeón suave (opcional) -->
+  <!-- Opcional: cerrar otros grupos al abrir uno (acordeón suave) -->
   <script>
     document.querySelectorAll('.btn-toggle[data-bs-toggle="collapse"]').forEach(btn => {
       btn.addEventListener('click', () => {
