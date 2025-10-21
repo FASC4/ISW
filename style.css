@@ -1,0 +1,81 @@
+/* ===== Reset y base ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #1a1a1a;
+  background: #f6f7f9;
+}
+
+/* ===== Barra lateral (aplica al primer div del body) ===== */
+body > div {
+  position: fixed;
+  inset: 0 auto 0 0;           /* top:0; bottom:0; left:0 */
+  width: 260px;
+  padding: 20px 16px;
+  background: #ffe6a7;         /* azul gris muy oscuro */
+  border-right: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Separación del contenido (si luego agregas contenido principal) */
+body { 
+  margin-left: 260px; 
+}
+
+/* ===== Enlaces ===== */
+body > div a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #a4a5a8;
+  font-weight: 600;
+  letter-spacing: .2px;
+  background: transparent;
+  transition: background-color .2s ease, color .2s ease, transform .02s ease;
+  outline: none;
+}
+
+/* Hover / focus */
+body > div a:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+body > div a:focus-visible {
+  outline: 2px solid #60a5fa;           /* azul claro accesible */
+  outline-offset: 2px;
+}
+
+/* Pressed feedback */
+body > div a:active { transform: translateY(1px); }
+
+/* ===== Encabezado opcional (si quisieras estilizar el primero) ===== */
+/* body > div a:first-child { background: rgba(255,255,255,0.1); } */
+
+/* ===== Responsive: barra se convierte en superior en pantallas pequeñas ===== */
+@media (max-width: 680px) {
+  body > div {
+    position: fixed;
+    width: 100%;
+    height: 64px;
+    padding: 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  body { margin-left: 0; padding-top: 64px; }
+
+  body > div a {
+    border-radius: 8px;
+    padding: 10px 12px;
+    flex: 0 0 auto;    /* que no se estiren, scroll horizontal si hace falta */
+  }
+}
