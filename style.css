@@ -1,175 +1,81 @@
-/* Reset básico */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; }
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f6f7fb; color:#111827; }
+:root {
+  --sidebar-bg: #fff3b0;
+  --sidebar-hover: #FFEA75;
+  --content-bg: #e5e7eb;
+}
 
-/* Layout principal */
+body {
+  background: #f6f7fb;
+}
+
 .layout {
-  display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar izquierda */
+/* ===== Sidebar ===== */
 .sidebar {
-  width: 260px;
-  background: #fff3b0;          /* azul muy oscuro */
+  background: var(--sidebar-bg);
   color: #9b9da0;
-  padding: 24px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  min-height: 100vh;
   position: sticky;
   top: 0;
-  height: 100vh;
+  padding: 1rem;
 }
 
-.sidebar a {
-  display: block;
-  text-decoration: none;
+/* Links y botones */
+.sidebar .nav-link,
+.sidebar .btn-toggle {
   color: #9b9da0;
-  padding: 12px 14px;
-  border-radius: 10px;
-  transition: background .2s, transform .05s;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.75rem;
   font-weight: 500;
-}
-.sidebar a:hover { background: #FFEA75; }
-.sidebar a:active { transform: scale(0.99); }
-
-/* Panel derecho (segundo div) */
-.content {
-  flex: 1;
-  padding: 28px;
-  background: #eef1f4;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-/* Caja gris */
-.content {
-  /* La propia sección será la caja gris */
-  background: #e5e7eb;          /* gris claro */
-  border: 1px solid #d1d5db;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
-  margin: 20px;
-  border-radius: 16px;
-  padding: 24px;
-}
-
-/* Título */
-.content h1 {
-  font-size: 20px;
-  margin-bottom: 8px;
-  color: #0f172a;
-}
-
-/* Formulario con selects */
-.filters {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 1fr));
-  gap: 16px 20px;
-}
-
-.field { display: flex; flex-direction: column; gap: 8px; }
-label { font-size: 14px; color: #374151; }
-
-select {
-  appearance: none;
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  background: #fff;
-  font-size: 14px;
-  outline: none;
-  transition: border-color .2s, box-shadow .2s;
-}
-select:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59,130,246,.2);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .sidebar { width: 220px; }
-  .filters { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-  .layout { flex-direction: column; }
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-bottom: 1px solid #1f2937;
-  }
-  .content { margin: 12px; }
-}
-
-/* ====== Sidebar: grupos desplegables ====== */
-.menu-group {
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.menu-group + a,
-.menu-group + .menu-group,
-.sidebar a + .menu-group {
-  margin-top: 6px;
-}
-
-/* Título del grupo (summary) con estilo de item de menú */
-.menu-group > summary {
-  list-style: none;           /* oculta marcador por defecto */
-  cursor: pointer;
-  padding: 12px 14px;
-  border-radius: 10px;
-  color: #9b9da0;
-  font-weight: 600;
-  position: relative;
-  transition: background .2s, transform .05s;
-}
-
-/* Hover/active como los <a> */
-.menu-group > summary:hover { background: #FFEA75; }
-.menu-group > summary:active { transform: scale(0.99); }
-
-/* Flecha indicador */
-.menu-group > summary::after {
-  content: '▸';
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%) rotate(0deg);
-  transition: transform .2s ease;
-  opacity: .8;
-}
-
-/* Rotar flecha cuando está abierto */
-.menu-group[open] > summary::after {
-  transform: translateY(-50%) rotate(90deg);
-}
-
-/* Contenedor de subopciones */
-.submenu {
-  display: grid;
-  padding: 6px 6px 8px 6px;   /* pequeño padding interno */
-  gap: 6px;
-}
-
-/* Links internos del desplegable */
-.submenu a {
   display: block;
   text-decoration: none;
-  color: #9b9da0;
+  transition: background 0.2s;
+}
+
+/* Hover */
+.sidebar .nav-link:hover,
+.sidebar .btn-toggle:hover {
+  background: var(--sidebar-hover);
+}
+
+/* Botones de colapso */
+.btn-toggle {
   background: transparent;
-  padding: 10px 12px 10px 28px;   /* sangría para jerarquía */
-  border-radius: 8px;
-  font-weight: 500;
-  transition: background .2s, transform .05s;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  cursor: pointer;
+  position: relative;
 }
 
-.submenu a:hover { background: #FFEA75; }
-.submenu a:active { transform: scale(0.99); }
+/* Flechita */
+.btn-toggle::after {
+  content: '▸';
+  float: right;
+  transition: transform 0.2s ease;
+  opacity: 0.8;
+}
 
-/* Quitar triángulo default de summary en Safari/Firefox */
-.menu-group > summary::-webkit-details-marker { display: none; }
+.btn-toggle[aria-expanded="true"]::after {
+  transform: rotate(90deg);
+}
+
+/* Submenú */
+.submenu .nav-link {
+  padding-left: 2rem;
+}
+
+/* ===== Panel derecho ===== */
+.content-wrap {
+  padding: 1.25rem;
+}
+
+.content {
+  background: var(--content-bg);
+  border: 1px solid #d1d5db;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem;
+}
