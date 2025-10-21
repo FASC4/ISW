@@ -79,3 +79,72 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   padding: 1.25rem;
 }
+
+/* ===== Sidebar colapsable (todas las versiones) ===== */
+.layout { position: relative; }
+
+/* Transiciones suaves */
+.sidebar, .content-wrap {
+  transition: all .25s ease;
+}
+
+/* Al colapsar, el sidebar ocupa 0 y el contenido se expande al 100% */
+.layout.collapsed .sidebar {
+  flex: 0 0 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border: 0;
+}
+.layout.collapsed .content-wrap {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
+/* Botón flotante para colapsar/expandir */
+.sidebar-toggle{
+  position: fixed;         /* siempre visible */
+  left: .5rem;
+  top: .75rem;
+  z-index: 1100;
+  background: var(--sidebar-bg);
+  color: #2b2b2b;          /* ajusta según tu paleta */
+  border: 1px solid #d1d5db;
+  border-radius: .75rem;
+  width: 36px;
+  height: 36px;
+  line-height: 34px;
+  text-align: center;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease, color .2s ease;
+}
+
+/* Hover/active */
+.sidebar-toggle:hover{
+  transform: translateY(-1px);
+  background: var(--sidebar-hover);
+}
+.sidebar-toggle:active{
+  transform: translateY(0);
+}
+
+/* Cuando está colapsado puedes mover un poquito el botón si quieres
+   (opcional, comentado por defecto) */
+/*
+.layout.collapsed .sidebar-toggle{
+  left: .5rem;
+}
+*/
+
+/* Evita que el botón tape el contenido en pantallas muy chicas */
+@media (max-width: 420px){
+  .sidebar-toggle{
+    left: .4rem;
+    top: .6rem;
+    width: 34px;
+    height: 34px;
+    line-height: 32px;
+  }
+}
