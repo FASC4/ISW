@@ -30,9 +30,12 @@
         const pass = document.getElementById('password').value;
 
         if (user === 'admin' && pass === '1234') {
-            window.location.href = "dashboard.html";
+            window.location.href = "dashboard_ad.html";
             return false;
-        } else {
+        } else if (user === 'vendedor' && pass === 'abcd'){
+            window.location.href = "dashboard_ve.html";
+            return false;
+        }else{
             alert('Usuario o contraseña incorrectos');
             return false;
         }
