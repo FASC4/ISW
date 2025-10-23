@@ -19,8 +19,6 @@
     <div class="row g-0">
       <!-- Sidebar -->
       <aside class="col-12 col-sm-4 col-md-3 col-lg-2 sidebar p-3">
-        
-
         <!-- Historial (link simple) -->
         <a class="nav-link mb-2 active" href="historial_ad.html">Historial</a>
 
@@ -56,6 +54,14 @@
           <h1 class="h5 mb-3">Datos del instrumento</h1>
 
           <form class="row gy-3 gx-3" novalidate>
+            <!-- NUEVO: Nombre del instrumento -->
+            <div class="col-12">
+              <label for="nombre" class="form-label">Nombre del instrumento</label>
+              <input id="nombre" name="nombre" type="text" class="form-control"
+                     placeholder="Ej. Balanza Analítica, Calibrador Vernier, etc."
+                     maxlength="80" required>
+            </div>
+
             <div class="col-12 col-md-6">
               <label for="marca" class="form-label">Marca</label>
               <input id="marca" name="marca" type="text" class="form-control" placeholder="Ej. Ohaus" required>
