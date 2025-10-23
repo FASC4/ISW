@@ -52,7 +52,7 @@
           </ul>
         </div>
 
-                <!-- Cerrar sesión -->
+        <!-- Cerrar sesión -->
         <a class="nav-link mt-2" href="index.html">Cerrar Sesión</a>
       </aside>
 
@@ -112,15 +112,17 @@
 
             <!-- Instrumentos (lista dinámica) -->
             <div class="col-12">
-              <div class="d-flex justify-content-between align-items-center">
-                <label class="form-label mb-0">Instrumentos</label>
-                <button type="button" id="btnAddInst" class="btn btn-sm btn-primary">
-                  <i class="bi bi-plus-lg"></i> Agregar instrumento
-                </button>
-              </div>
+              <label class="form-label mb-0">Instrumentos</label>
 
               <div id="instrumentosList" class="mt-3">
                 <!-- Fila de instrumento (se generan dinámicamente) -->
+              </div>
+
+              <!-- Botón debajo del listado de instrumentos -->
+              <div class="mt-2">
+                <button type="button" id="btnAddInst" class="btn btn-sm btn-primary">
+                  <i class="bi bi-plus-lg"></i> Agregar instrumento
+                </button>
               </div>
 
               <!-- Plantilla oculta -->
@@ -226,7 +228,6 @@
         e.target.classList.add('was-validated');
         return;
       }
-      // Aquí podrías serializar y enviar los datos (fetch/AJAX)
       e.preventDefault();
       alert('Cotización guardada (simulado).');
     });
