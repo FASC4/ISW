@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Cotizador MSV — Instrumentos</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .instrument-item { align-items: center; }
+    .instrument-meta { font-size:.9rem; color:#6c757d; }
+    .instrument-actions .btn { padding:.25rem .45rem; border-radius:.35rem; }
+    .sidebar-toggle { position: fixed; left: 8px; top: 8px; z-index: 1200; }
+    .layout.collapsed .sidebar { width: 68px !important; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <!-- Botón flotante para colapsar/expandir sidebar -->
+  <button class="sidebar-toggle btn btn-light shadow-sm" type="button" aria-label="Alternar menú" aria-expanded="true">⟨</button>
+
+  <div class="container-fluid layout" id="layoutRoot">
+    <div class="row g-0">
+      <aside class="col-12 col-sm-4 col-md-3 col-lg-2 sidebar p-3">
+        
+
+        <!-- Historial (link simple) -->
+        <a class="nav-link mb-2 active" href="historial_ad.html">Historial</a>
+
+        <!-- Clientes (colapsable) -->
+        <button class="btn btn-toggle mb-2 w-100" data-bs-toggle="collapse" data-bs-target="#clientes" aria-expanded="false">
+          Clientes
+        </button>
+        <div class="collapse" id="clientes">
+          <ul class="nav flex-column submenu mb-2">
+            <!--<li class="nav-item"><a class="nav-link" href="ag_clientes.html">Agregar</a></li>-->
+            <li class="nav-item"><a class="nav-link" href="ver_clientes.html">Ver</a></li>
+          </ul>
+        </div>
+
+        <!-- Instrumentos (colapsable) -->
+        <button class="btn btn-toggle mb-2 w-100" data-bs-toggle="collapse" data-bs-target="#instrumentos" aria-expanded="false">
+          Instrumentos
+        </button>
+        <div class="collapse" id="instrumentos">
+          <ul class="nav flex-column submenu mb-2">
+            <li class="nav-item"><a class="nav-link" href="ag_inst.html">Agregar</a></li>
+            <li class="nav-item"><a class="nav-link" href="ed_inst.html">Gestionar</a></li>
+          </ul>
+        </div>
+
+        <!-- Cerrar sesión -->
+        <a class="nav-link mt-2" href="index.html">Cerrar Sesión</a>
+      </aside>
+
+      <!-- Panel derecho -->
+      <main class="col-12 col-sm-8 col-md-9 col-lg-10 content-wrap">
+        <div class="content p-4">
+          <h1 class="h5 mb-4">Instrumentos</h1>
+
+          <!-- Listado de instrumentos (falso) -->
+          <div class="list-group">
+            <div class="list-group-item d-flex justify-content-between instrument-item">
+              <div>
+                <div class="fw-semibold">Balanza Analítica PR224/E</div>
+                <div class="instrument-meta">Marca: Ohaus</div>
+              </div>
+              <div class="d-flex gap-2 instrument-actions">
+                <button class="btn btn-sm btn-outline-secondary" title="Editar" aria-label="Editar PR224/E" data-id="1">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" title="Eliminar" aria-label="Eliminar PR224/E" data-id="1">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="list-group-item d-flex justify-content-between instrument-item">
+              <div>
+                <div class="fw-semibold">Calibrador Vernier 150mm</div>
+                <div class="instrument-meta">Marca: Mitutoyo</div>
+              </div>
+              <div class="d-flex gap-2 instrument-actions">
+                <button class="btn btn-sm btn-outline-secondary" title="Editar" aria-label="Editar Calibrador 150mm" data-id="2">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" title="Eliminar" aria-label="Eliminar Calibrador 150mm" data-id="2">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="list-group-item d-flex justify-content-between instrument-item">
+              <div>
+                <div class="fw-semibold">Termómetro Infrarrojo 62 MAX</div>
+                <div class="instrument-meta">Marca: Fluke</div>
+              </div>
+              <div class="d-flex gap-2 instrument-actions">
+                <button class="btn btn-sm btn-outline-secondary" title="Editar" aria-label="Editar 62 MAX" data-id="3">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" title="Eliminar" aria-label="Eliminar 62 MAX" data-id="3">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="list-group-item d-flex justify-content-between instrument-item">
+              <div>
+                <div class="fw-semibold">Micrómetro Externo 0–25mm</div>
+                <div class="instrument-meta">Marca: Starrett</div>
+              </div>
+              <div class="d-flex gap-2 instrument-actions">
+                <button class="btn btn-sm btn-outline-secondary" title="Editar" aria-label="Editar Micrómetro 0–25mm" data-id="4">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" title="Eliminar" aria-label="Eliminar Micrómetro 0–25mm" data-id="4">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (incluye Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Scripts: acciones simuladas + toggle sidebar -->
+  <script>
+    // Eliminar (simulado)
+    document.querySelectorAll('.instrument-actions .btn-outline-danger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        if (confirm('¿Eliminar instrumento #' + id + '? (simulado)')) {
+          const item = btn.closest('.list-group-item');
+          item.style.transition = 'opacity .25s ease, height .25s ease, margin .25s ease';
+          item.style.opacity = '0';
+          item.style.height = '0';
+          item.style.margin = '0';
+          setTimeout(() => item.remove(), 300);
+        }
+      });
+    });
+
+    // Editar (simulado)
+    document.querySelectorAll('.instrument-actions .btn-outline-secondary').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        alert('Editar instrumento #' + id + ' (simulado).');
+      });
+    });
+
+    // Cerrar otros submenús al abrir uno
+    document.querySelectorAll('.btn-toggle[data-bs-toggle="collapse"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const current = document.querySelector(btn.dataset.bsTarget);
+        if (!current.classList.contains('show')) {
+          document.querySelectorAll('.sidebar .collapse.show').forEach(open => {
+            if (open !== current) new bootstrap.Collapse(open, { toggle: true });
+          });
+        }
+      });
+    });
+
+    // Sidebar toggle
+    (function () {
+      const layout = document.getElementById('layoutRoot');
+      const toggleBtn = document.querySelector('.sidebar-toggle');
+      function updateIcon() {
+        const collapsed = layout.classList.contains('collapsed');
+        toggleBtn.textContent = collapsed ? '⟩' : '⟨';
+        toggleBtn.setAttribute('aria-expanded', String(!collapsed));
+      }
+      toggleBtn.addEventListener('click', () => {
+        layout.classList.toggle('collapsed');
+        updateIcon();
+      });
+      updateIcon();
+    })();
+  </script>
+</body>
+</html>
