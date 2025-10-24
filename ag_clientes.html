@@ -44,7 +44,7 @@
           </ul>
         </div>
 
-                <!-- Cerrar sesión -->
+        <!-- Cerrar sesión -->
         <a class="nav-link mt-2" href="index.html">Cerrar Sesión</a>
       </aside>
 
@@ -62,7 +62,7 @@
 
             <div class="col-12 col-md-6">
               <label for="telefono" class="form-label">Teléfono</label>
-              <input id="telefono" name="telefono" type="tel" class="form-control" placeholder="Ej. 222-123-4567" pattern="^[0-9+\-\s()]{7,20}$" title="Usa solo números, espacios y símbolos + - ( )" required>
+              <input id="telefono" name="telefono" type="tel" class="form-control" placeholder="Ej. 222-123-4567" pattern="^[0-9+\\-\\s()]{7,20}$" title="Usa solo números, espacios y símbolos + - ( )" required>
             </div>
 
             <div class="col-12 col-md-6">
@@ -83,11 +83,27 @@
                 type="text"
                 class="form-control"
                 placeholder="Ej. ABCD8012311H0"
-                pattern="^([A-ZÑ&]{3,4})(\d{6})([A-Z\d]{2})([A\d])$"
+                pattern="^([A-ZÑ&]{3,4})(\\d{6})([A-Z\\d]{2})([A\\d])$"
                 title="RFC de 12 o 13 caracteres en mayúsculas (persona moral/física)"
                 required
                 style="text-transform:uppercase"
               >
+            </div>
+
+            <!-- NUEVO: Dirección física -->
+            <div class="col-12">
+              <label for="direccion" class="form-label">Dirección física</label>
+              <textarea
+                id="direccion"
+                name="direccion"
+                class="form-control"
+                placeholder="Calle y número, colonia, ciudad, estado, CP"
+                rows="2"
+                maxlength="200"
+                autocomplete="street-address"
+                required
+              ></textarea>
+              <div class="form-text">Ejemplo: 4 Sur 310, Col. Centro, Puebla, PUE, 72000</div>
             </div>
 
             <!-- Acciones (opcional) -->
