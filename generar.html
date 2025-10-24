@@ -70,7 +70,7 @@
               </select>
             </div>
 
-            <!-- Tiempo de entrega (select) -->
+            <!-- Tiempo de entrega -->
             <div class="col-12 col-md-6">
               <label for="tiempo_entrega" class="form-label">Tiempo de entrega</label>
               <select id="tiempo_entrega" name="tiempo_entrega" class="form-select" required>
@@ -120,7 +120,7 @@
               <!-- Plantilla oculta -->
               <template id="tplInstRow">
                 <div class="row g-2 align-items-end inst-row pb-2 border-bottom pt-2">
-                  <div class="col-12 col-md-6">
+                  <div class="col-12 col-lg-5">
                     <label class="form-label">Instrumento</label>
                     <select class="form-select inst-nombre" required>
                       <option value="" selected disabled>Selecciona un instrumento</option>
@@ -130,24 +130,43 @@
                       <option>Micrómetro Externo 0–25mm</option>
                     </select>
                   </div>
-                  <div class="col-6 col-md-3">
-                    <label class="form-label">Marca</label>
-                    <!-- AHORA ES SELECT -->
-                    <select class="form-select inst-marca" required>
-                      <option value="" selected disabled>Selecciona marca</option>
-                    </select>
+
+                  <div class="col-6 col-lg-3">
+                    <label class="form-label"># de serie</label>
+                    <input type="text" class="form-control inst-serie" placeholder="Ej. SN-12345" maxlength="40" required>
                   </div>
-                  <div class="col-6 col-md-2">
+
+                  <div class="col-6 col-lg-2">
+                    <label class="form-label">Identificador</label>
+                    <input type="text" class="form-control inst-ident" placeholder="Ej. INV-009" maxlength="30" required>
+                  </div>
+
+                  <!-- Cantidad compacta -->
+                  <div class="col-auto qty-col">
                     <label class="form-label">Cantidad</label>
                     <input type="number" class="form-control inst-cantidad" min="1" step="1" value="1" required>
                   </div>
-                  <div class="col-12 col-md-1 d-grid">
+
+                  <!-- Botón borrar pegado a la derecha -->
+                  <div class="col-auto trash-col ms-auto text-end d-grid">
                     <button type="button" class="btn btn-outline-danger btnRemove" title="Eliminar fila">
                       <i class="bi bi-trash"></i>
                     </button>
                   </div>
                 </div>
               </template>
+            </div>
+
+            <!-- Razón social (dejas igual el input anterior) -->
+
+            <!-- Reemplazo: Tipo de persona como lista -->
+            <div class="col-12 col-md-6">
+              <label for="tipo_persona" class="form-label">Tipo de persona</label>
+              <select id="tipo_persona" name="tipo_persona" class="form-select" required>
+                <option value="" selected disabled>Selecciona tipo</option>
+                <option value="fisica">Persona física</option>
+                <option value="moral">Persona moral</option>
+              </select>
             </div>
 
             <!-- Acciones -->
@@ -193,53 +212,12 @@
       });
     });
 
-    // --- Catálogo de marcas por instrumento ---
-    const BRANDS_MAP = {
-      'Calibrador Vernier 150mm': ['Mitutoyo', 'Starrett', 'Fowler', 'Truper'],
-      'Balanza Analítica PR224/E': ['OHAUS', 'Mettler Toledo', 'Sartorius', 'Radwag'],
-      'Termómetro Infrarrojo 62 MAX': ['Fluke', 'FLIR', 'UNI-T', 'Extech'],
-      'Micrómetro Externo 0–25mm': ['Mitutoyo', 'Starrett', 'Brown & Sharpe', 'Insize']
-    };
-    const DEFAULT_BRANDS = ['Genérica', 'Otra'];
-
-    function populateBrands(selectEl, instrumentName) {
-      const brands = BRANDS_MAP[instrumentName] || DEFAULT_BRANDS;
-      // limpiar
-      selectEl.innerHTML = '';
-      // placeholder
-      const ph = document.createElement('option');
-      ph.value = '';
-      ph.textContent = 'Selecciona marca';
-      ph.disabled = true;
-      ph.selected = true;
-      selectEl.appendChild(ph);
-      // opciones
-      brands.forEach(b => {
-        const opt = document.createElement('option');
-        opt.value = b;
-        opt.textContent = b;
-        selectEl.appendChild(opt);
-      });
-    }
-
     // ---- Instrumentos dinámicos ----
     const list = document.getElementById('instrumentosList');
     const tpl  = document.getElementById('tplInstRow');
     const addBtn = document.getElementById('btnAddInst');
 
     function initRow(scope) {
-      const instSelect = scope.querySelector('.inst-nombre');
-      const brandSelect = scope.querySelector('.inst-marca');
-
-      // Poblado inicial (por si ya viene con valor)
-      if (instSelect.value) populateBrands(brandSelect, instSelect.value);
-
-      // Al cambiar instrumento, refrescar marcas
-      instSelect.addEventListener('change', () => {
-        populateBrands(brandSelect, instSelect.value);
-        brandSelect.focus();
-      });
-
       // Eliminar fila con animación
       scope.querySelector('.btnRemove').addEventListener('click', (e) => {
         const row = e.currentTarget.closest('.inst-row');
