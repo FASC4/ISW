@@ -148,3 +148,8 @@ body {
     line-height: 32px;
   }
 }
+
+.inst-row .qty-col { flex:0 0 auto; width:90px; }
+.inst-row .trash-col { flex:0 0 auto; width:55px; } /* botón a la derecha */
+.inst-row .inst-cantidad { text-align:center; }
+
