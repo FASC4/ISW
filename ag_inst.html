@@ -86,14 +86,16 @@
             </div>
 
             <div class="col-12 col-md-6">
-              <label for="precio" class="form-label">Precio unitario</label>
-              <div class="input-group">
-                <span class="input-group-text">$ MXN</span>
-                <input id="precio" name="precio" type="number" class="form-control" placeholder="0.00"
-                       inputmode="decimal" step="0.01" min="0" required>
-              </div>
-              <div class="form-text">Ingresa el precio antes de IVA.</div>
+              <label for="magnitud" class="form-label">Magnitud</label>
+              <select id="magnitud" name="magnitud" class="form-select" required>
+                <option value="" selected disabled>Selecciona magnitud</option>
+                <option value="densidad">Densidad</option>
+                <option value="presion">Presión</option>
+                <option value="temperatura">Temperatura</option>
+                <option value="volumen">Volumen</option>
+              </select>
             </div>
+
 
             <div class="col-12">
               <button type="submit" class="btn btn-primary">Guardar</button>
