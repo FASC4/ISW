@@ -124,10 +124,22 @@
               <template id="tplInstRow">
                 <div class="row g-2 inst-row pb-2 border-bottom pt-2">
                   
-                  <!-- Columna grande izquierda con Instrumento y Punto -->
+                  <!-- Columna grande izquierda con Magnitud, Instrumento y Puntos -->
                   <div class="col-12 col-lg-5">
                     <div class="row g-2">
-                      <div class="col-12">
+                      
+                      <div class="col-12 col-md-6">
+                        <label class="form-label">Magnitud</label>
+                        <select class="form-select inst-magnitud" required>
+                          <option value="" selected disabled>Selecciona magnitud</option>
+                          <option value="temperatura">Temperatura</option>
+                          <option value="volumen">Volumen</option>
+                          <option value="densidad">Densidad</option>
+                          <option value="presion">Presión</option>
+                        </select>
+                      </div>
+
+                      <div class="col-12 col-md-6">
                         <label class="form-label">Instrumento</label>
                         <select class="form-select inst-nombre" required>
                           <option value="" selected disabled>Selecciona un instrumento</option>
@@ -138,8 +150,8 @@
                         </select>
                       </div>
 
-                      <div class="col-12 col-md-6">
-                        <label class="form-label">Puntos a calibrar</label>
+                      <div class="col-12">
+                        <label class="form-label">Puntos mínimos a calibrar</label>
                         <input
                           type="number"
                           class="form-control inst-punto"
@@ -173,6 +185,23 @@
                     <button type="button" class="btn btn-outline-danger btnRemove mt-4 mt-lg-0" title="Eliminar fila">
                       <i class="bi bi-trash"></i>
                     </button>
+                  </div>
+
+                  <!-- Puntos a calibrar (textarea grande, al ancho completo) -->
+                  <div class="col-12 mt-2">
+                    <label class="form-label">Puntos a calibrar (lista / rangos / valores)</label>
+                    <textarea
+                      class="form-control inst-detalle-puntos"
+                      rows="3"
+                      maxlength="400"
+                      placeholder="Ej. 0°C, 25°C, 50°C, 75°C, 100°C
+o 0 bar, 5 bar, 10 bar
+o 1 g, 50 g, 100 g, 200 g"
+                      required
+                    ></textarea>
+                    <div class="form-text">
+                      Especifica los valores objetivo donde se va a verificar el equipo.
+                    </div>
                   </div>
                 </div>
               </template>
