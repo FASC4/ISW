@@ -1,0 +1,141 @@
+<?php require __DIR__ . '/includes/init.php'; ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Cotizador MSV — Historial</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Pequeños ajustes locales para la lista */
+    .quote-item { align-items: center; }
+    .quote-meta { font-size: .9rem; color: #6c757d; }
+    .quote-actions .btn { padding: .25rem .45rem; border-radius: .35rem; }
+    .sidebar-toggle { position: fixed; left: 8px; top: 8px; z-index: 1200; }
+    .layout.collapsed .sidebar { width: 68px !important; overflow: hidden; }
+  </style>
+
+  <script src="global-ui.js"></script>
+</head>
+<body>
+  <!-- Botón flotante para colapsar/expandir sidebar (todas las resoluciones) -->
+  <button class="sidebar-toggle btn btn-light shadow-sm" type="button" aria-label="Alternar menú" aria-expanded="true">⟨</button>
+
+  <div class="container-fluid layout" id="layoutRoot">
+    <div class="row g-0">
+      <!-- Sidebar -->
+      <aside class="col-12 col-sm-4 col-md-3 col-lg-2 sidebar p-3">
+        <!-- Historial (link simple) -->
+        <a class="nav-link mb-2 active" href="dashboard_ad.php">Inicio</a>
+
+        <!-- Historial (link simple) -->
+        <a class="nav-link mb-2 active" href="historial_ad.php">Historial</a>
+
+        <!-- Historial (link simple) -->
+        <a class="nav-link mb-2 active" href="ad_usuarios.php">Administrar Usuarios</a>
+
+        <!-- Clientes (colapsable) -->
+         <!-- Historial (link simple) -->
+        <a class="nav-link mb-2" href="ver_clientes.php">Ver clientes</a>
+
+        <!-- Instrumentos (colapsable) -->
+        <button class="btn btn-toggle mb-2 w-100" data-bs-toggle="collapse" data-bs-target="#instrumentos" aria-expanded="false">
+          Instrumentos
+        </button>
+        <div class="collapse" id="instrumentos">
+          <ul class="nav flex-column submenu mb-2">
+            <li class="nav-item"><a class="nav-link" href="ag_inst.php">Agregar</a></li>
+            <li class="nav-item"><a class="nav-link" href="ed_inst.php">Gestionar</a></li>
+          </ul>
+        </div>
+
+        <!-- Cerrar sesión -->
+        <a class="nav-link mt-2" href="index.php">Cerrar Sesión</a>
+      </aside>
+
+      <!-- Panel derecho -->
+      <main class="col-12 col-sm-8 col-md-9 col-lg-10 content-wrap">
+        <div class="content p-4">
+          <h1 class="h5 mb-4">Historial de cotizaciones</h1>
+
+          <!-- Listado falso de cotizaciones -->
+          <div class="list-group">
+            <div class="list-group-item d-flex justify-content-between quote-item">
+              <div>
+                <div class="fw-semibold">Cotización 1</div>
+                <div class="quote-meta">Fecha: 2025-09-12 — Cliente: MSV Metrología</div>
+              </div>
+              <div class="d-flex gap-2 align-items-center quote-actions">
+                <button class="btn btn-sm btn-outline-primary" title="Ver cotización" aria-label="Ver Cotización 1" data-id="1">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="list-group-item d-flex justify-content-between quote-item">
+              <div>
+                <div class="fw-semibold">Cotización 2</div>
+                <div class="quote-meta">Fecha: 2025-08-03 — Cliente: Laboratorios del Norte</div>
+              </div>
+              <div class="d-flex gap-2 align-items-center quote-actions">
+                <button class="btn btn-sm btn-outline-primary" title="Ver cotización" aria-label="Ver Cotización 2" data-id="2">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="list-group-item d-flex justify-content-between quote-item">
+              <div>
+                <div class="fw-semibold">Cotización 3</div>
+                <div class="quote-meta">Fecha: 2025-10-01 — Cliente: Servicios Técnicos SA</div>
+              </div>
+              <div class="d-flex gap-2 align-items-center quote-actions">
+                <button class="btn btn-sm btn-outline-primary" title="Ver cotización" aria-label="Ver Cotización 3" data-id="3">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="list-group-item d-flex justify-content-between quote-item">
+              <div>
+                <div class="fw-semibold">Cotización 4</div>
+                <div class="quote-meta">Fecha: 2025-07-22 — Cliente: Talleres Puebla</div>
+              </div>
+              <div class="d-flex gap-2 align-items-center quote-actions">
+                <button class="btn btn-sm btn-outline-primary" title="Ver cotización" aria-label="Ver Cotización 4" data-id="4">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (incluye Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script para acción "ver" (simulado) y sidebar -->
+  <script>
+    // Acción ver (simulado)
+    document.querySelectorAll('.quote-actions .btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        // Aquí podrías redirigir a ver_cotizacion.html?id=ID
+        // location.href = 'ver_cotizacion.html?id=' + encodeURIComponent(id);
+        alert('Ver cotización #' + id + ' (simulado).');
+      });
+    });
+
+    </script>
+</body>
+</html>
